@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CMyOleDropTarget.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MFCDragAndDropExample_20200213_1427.h" />
     <ClInclude Include="MFCDragAndDropExample_20200213_1427Doc.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CMyOleDropTarget.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MFCDragAndDropExample_20200213_1427.cpp" />
     <ClCompile Include="MFCDragAndDropExample_20200213_1427Doc.cpp" />
