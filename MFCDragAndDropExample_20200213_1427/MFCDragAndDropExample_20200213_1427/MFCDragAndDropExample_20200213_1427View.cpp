@@ -26,6 +26,7 @@ BEGIN_MESSAGE_MAP(CMFCDragAndDropExample202002131427View, CView)
 	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
+	ON_WM_CREATE()		// (Implemented by VargaG., on 2020.02.13.)
 END_MESSAGE_MAP()
 
 // CMFCDragAndDropExample202002131427View construction/destruction
@@ -48,7 +49,28 @@ BOOL CMFCDragAndDropExample202002131427View::PreCreateWindow(CREATESTRUCT& cs)
 	return CView::PreCreateWindow(cs);
 }
 
-// CMFCDragAndDropExample202002131427View drawing
+// (Implemented by VargaG., on 2020.02.13.)
+int CMFCDragAndDropExample202002131427View::OnCreate(LPCREATESTRUCT a_lpCreateStruct)
+{
+	// (Implemented by VargaG., on 2020.02.13.)
+	if (CView::OnCreate(a_lpCreateStruct) == -1)
+	{
+		// (Implemented by VargaG., on 2020.02.13.)
+		return -1;
+	}
+
+	// Register this window with the OLE DLLs as a valid drop target.
+	// (Implemented by VargaG., on 2020.02.13.)
+	if (m_oleDropTarget.Register(this) == FALSE)
+	{
+		// (Implemented by VargaG., on 2020.02.13.)
+		ASSERT(FALSE);
+		return -1;
+	}
+
+	// (Implemented by VargaG., on 2020.02.13.)
+	return 0;
+}
 
 void CMFCDragAndDropExample202002131427View::OnDraw(CDC* /*pDC*/)
 {

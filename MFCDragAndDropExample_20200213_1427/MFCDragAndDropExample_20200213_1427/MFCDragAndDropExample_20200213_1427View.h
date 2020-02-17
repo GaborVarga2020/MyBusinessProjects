@@ -1,12 +1,15 @@
-
-// MFCDragAndDropExample_20200213_1427View.h : interface of the CMFCDragAndDropExample202002131427View class
-//
-
 #pragma once
 
+#include "CMyOleDropTarget.h"		// (Implemented by VargaG., on 2020.02.13.)
 
 class CMFCDragAndDropExample202002131427View : public CView
 {
+	// Provides the communication mechanism between a window and the OLE libraries.
+	// (Implemented by VargaG., on 2020.02.13.)
+private: CMyOleDropTarget m_oleDropTarget;
+
+protected: afx_msg int OnCreate(LPCREATESTRUCT a_lpCreateStruct);		// (Implemented by VargaG., on 2020.02.13.)
+
 protected: // create from serialization only
 	CMFCDragAndDropExample202002131427View() noexcept;
 	DECLARE_DYNCREATE(CMFCDragAndDropExample202002131427View)
