@@ -21,66 +21,71 @@ BOOL CMyOleDropTarget::IsFilePathNameListIsDragged(COleDataObject* a_pDataObject
 	CLIPFORMAT clipFormat = CF_HDROP;
 	HGLOBAL hglobalDropFiles = a_pDataObject->GetGlobalData(clipFormat);
 
-	// (Implemented by VargaG., on 2020.02.17.)
-	__try
+	// (Implemented by VargaG., on 2020.02.18.)
+	if (hglobalDropFiles != NULL)
 	{
 		// (Implemented by VargaG., on 2020.02.17.)
-		LPDROPFILES pDropFiles = (LPDROPFILES)::GlobalLock(hglobalDropFiles);
-		if (pDropFiles == NULL)
+		__try
 		{
 			// (Implemented by VargaG., on 2020.02.17.)
-			ASSERT(FALSE);
-			return FALSE;
-		}
-
-		// (Implemented by VargaG., on 2020.02.17.)
-		if (pDropFiles->fWide)
-		{
-			// (Implemented by VargaG., on 2020.02.17.)
-			bool bAdditionalFileNameExistst = true;
-
-			// (Implemented by VargaG., on 2020.02.17.)
-			PWCHAR pDroppedFilePathAndName = (PWCHAR)((PCHAR)pDropFiles + pDropFiles->pFiles);
-
-			do
+			LPDROPFILES pDropFiles = (LPDROPFILES)::GlobalLock(hglobalDropFiles);
+			if (pDropFiles == NULL)
 			{
 				// (Implemented by VargaG., on 2020.02.17.)
-				m_droppedFilePathNames.Add(pDroppedFilePathAndName);
-
-				// Get the number of characters in the string, not including the terminating null character.
-				// (Implemented by VargaG., on 2020.02.17.)
-				size_t nDroppedFilePathAndNameLengthWithoutTerminatingNullCharacter = wcsnlen_s(pDroppedFilePathAndName, MAX_PATH);
-
-				// (Implemented by VargaG., on 2020.02.17.)
-				pDroppedFilePathAndName = pDroppedFilePathAndName + nDroppedFilePathAndNameLengthWithoutTerminatingNullCharacter + 1;
-
-				// (Implemented by VargaG., on 2020.02.17.)
-				bAdditionalFileNameExistst = (*pDroppedFilePathAndName != L'\x0');
+				ASSERT(FALSE);
+				return FALSE;
 			}
-			while (bAdditionalFileNameExistst);
+
+			// (Implemented by VargaG., on 2020.02.17.)
+			if (pDropFiles->fWide)
+			{
+				// (Implemented by VargaG., on 2020.02.17.)
+				bool bAdditionalFileNameExistst = true;
+
+				// (Implemented by VargaG., on 2020.02.17.)
+				PWCHAR pDroppedFilePathAndName = (PWCHAR)((PCHAR)pDropFiles + pDropFiles->pFiles);
+
+				do
+				{
+					// (Implemented by VargaG., on 2020.02.17.)
+					m_droppedFilePathNames.Add(pDroppedFilePathAndName);
+
+					// Get the number of characters in the string, not including the terminating null character.
+					// (Implemented by VargaG., on 2020.02.17.)
+					size_t nDroppedFilePathAndNameLengthWithoutTerminatingNullCharacter = wcsnlen_s(pDroppedFilePathAndName, MAX_PATH);
+
+					// (Implemented by VargaG., on 2020.02.17.)
+					pDroppedFilePathAndName = pDroppedFilePathAndName + nDroppedFilePathAndNameLengthWithoutTerminatingNullCharacter + 1;
+
+					// (Implemented by VargaG., on 2020.02.17.)
+					bAdditionalFileNameExistst = (*pDroppedFilePathAndName != L'\x0');
+				}
+				while (bAdditionalFileNameExistst);
+			}
+			else
+			{
+				// (Implemented by VargaG., on 2020.02.17.)
+				TRACE("ANSI characters are not supported, only Unicode characters!");
+				ASSERT(FALSE);
+			}
+
+			return TRUE;
 		}
-		else
+		__finally
 		{
 			// (Implemented by VargaG., on 2020.02.17.)
-			TRACE("ANSI characters are not supported, only Unicode characters!");
-			ASSERT(FALSE);
-		}
-
-		return TRUE;
-	}
-	__finally
-	{
-		// (Implemented by VargaG., on 2020.02.17.)
-		BOOL bGlobalUnlockResult = ::GlobalUnlock(hglobalDropFiles);
-		DWORD dwLastError = GetLastError();
-		if ((bGlobalUnlockResult == FALSE) && (dwLastError != NO_ERROR))
-		{
-			// (Implemented by VargaG., on 2020.02.17.)
-			ASSERT(FALSE);
-			return FALSE;
+			BOOL bGlobalUnlockResult = ::GlobalUnlock(hglobalDropFiles);
+			DWORD dwLastError = GetLastError();
+			if ((bGlobalUnlockResult == FALSE) && (dwLastError != NO_ERROR))
+			{
+				// (Implemented by VargaG., on 2020.02.17.)
+				ASSERT(FALSE);
+				return FALSE;
+			}
 		}
 	}
 
+	// (Implemented by VargaG., on 2020.02.18.)
 	return FALSE;
 }
 
@@ -136,7 +141,7 @@ BOOL CMyOleDropTarget::OnDrop(CWnd* a_pWnd, COleDataObject* a_pDataObject, DROPE
 			// (Implemented by VargaG., on 2020.02.17.)
 			CString stringFileDataIndexed = m_droppedFilePathNames.GetAt(nDroppedFileDataIndex);
 			TRACE(
-				"Dropped file path and name (%d of %d): %s",
+				_T("Dropped file path and name (%d of %d): %s.\n"),
 				nDroppedFileDataIndex + 1,
 				m_droppedFilePathNames.GetCount(),
 				stringFileDataIndexed
