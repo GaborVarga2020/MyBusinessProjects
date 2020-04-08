@@ -10,11 +10,32 @@ using System.Windows.Forms;
 
 namespace CSharpInterfaceExample
 {
-	public partial class Form1 : Form
+	public partial class Form : System.Windows.Forms.Form
 	{
-		public Form1()
+		#region Fields
+
+		private BackendSoftwareComponent _backendSoftwareComponent;
+
+		#endregion
+
+		#region Constructors
+
+		public Form()
 		{
 			InitializeComponent();
+
+			_backendSoftwareComponent = new BackendSoftwareComponent();
 		}
+
+		#endregion
+
+		#region Methods
+
+		private void EventHandler_ButtonIncreaseCounter_Click(object sender, EventArgs e)
+		{
+			_backendSoftwareComponent.IncreaseInternalCounter();
+		}
+
+		#endregion
 	}
 }
