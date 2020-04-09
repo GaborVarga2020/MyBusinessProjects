@@ -93,6 +93,7 @@
 			this._buttonLogToFile.TabIndex = 2;
 			this._buttonLogToFile.Text = "Naplózás fájlba";
 			this._buttonLogToFile.UseVisualStyleBackColor = true;
+			this._buttonLogToFile.Click += new System.EventHandler(this.EventHandler_ButtonLogToFile_Click);
 			// 
 			// _label
 			// 

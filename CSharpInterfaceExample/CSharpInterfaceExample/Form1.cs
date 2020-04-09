@@ -14,6 +14,7 @@ namespace CSharpInterfaceExample
 	{
 		#region Fields
 
+		private ActivityLoggerToFile _activityLoggerToFile;
 		private BackendSoftwareComponent _backendSoftwareComponent;
 
 		#endregion
@@ -25,6 +26,7 @@ namespace CSharpInterfaceExample
 			InitializeComponent();
 
 			_backendSoftwareComponent = new BackendSoftwareComponent();
+			_backendSoftwareComponent.SetActivityLogger(this);
 		}
 
 		#endregion
@@ -34,6 +36,21 @@ namespace CSharpInterfaceExample
 		private void EventHandler_ButtonIncreaseCounter_Click(object sender, EventArgs e)
 		{
 			_backendSoftwareComponent.IncreaseInternalCounter();
+		}
+
+		private void EventHandler_ButtonLogToFile_Click(object sender, EventArgs e)
+		{
+			_backendSoftwareComponent.SetActivityLogger(_activityLoggerToFile);
+		}
+
+		public void LogActivity(string a_strLogMessage)
+		{
+			if (_textBox.Text.Equals(string.Empty) == false)
+			{
+				_textBox.Text += "\r\n";
+			}
+
+			_textBox.Text += a_strLogMessage;
 		}
 
 		#endregion
