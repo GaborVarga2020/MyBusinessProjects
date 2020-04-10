@@ -11,7 +11,7 @@ namespace CSharpInterfaceExample
 		#region Fields
 
 		// A szoftver komponens tevékenységét naplózó szoftver komponensre hivatkozó referencia.
-		private Form _activityLogger;
+		private IActivityLogger _activityLogger;
 
 		private int _nInternalCounter;
 
@@ -33,7 +33,7 @@ namespace CSharpInterfaceExample
 		}
 
 		// Metódus a tevékenységnaplót menedzselő szoftver komponens beállítására.
-		public void SetActivityLogger(Form a_activityLogger)
+		public void SetActivityLogger(IActivityLogger a_activityLogger)
 		{
 			_activityLogger = a_activityLogger;
 		}

@@ -7,19 +7,6 @@
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
 		#region Windows Form Designer generated code
 
 		/// <summary>
@@ -81,6 +68,7 @@
 			this._buttonLogToScreen.TabIndex = 1;
 			this._buttonLogToScreen.Text = "Naplózás képernyőre";
 			this._buttonLogToScreen.UseVisualStyleBackColor = true;
+			this._buttonLogToScreen.Click += new System.EventHandler(this.EventHandler_ButtonLogToScreen_Click);
 			// 
 			// _buttonLogToFile
 			// 
