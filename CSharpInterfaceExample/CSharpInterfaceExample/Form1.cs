@@ -18,6 +18,7 @@ namespace CSharpInterfaceExample
 
 		private ActivityLoggerToFile _activityLoggerToFile;
 		private BackendSoftwareComponent _backendSoftwareComponent;
+		private bool _bDisposed;
 
 		#endregion
 
@@ -41,13 +42,28 @@ namespace CSharpInterfaceExample
 		/// <param name="a_bDisposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool a_bDisposing)
 		{
+			if (_bDisposed)
+			{
+				return;
+			}
+
 			if (a_bDisposing)
 			{
 				if (components != null)
 				{
 					components.Dispose();
 				}
+
+				if (_activityLoggerToFile != null)
+				{
+					_activityLoggerToFile.Dispose();
+					_activityLoggerToFile = null;
+
+					_backendSoftwareComponent = null;
+				}
 			}
+
+			_bDisposed = true;
 
 			base.Dispose(a_bDisposing);
 		}
