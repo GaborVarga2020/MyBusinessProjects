@@ -7,4 +7,4 @@ C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\BilateralReference
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\BilateralReferences\obj\Debug\BilateralReferences.csproj.CoreCompileInputs.cache
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\BilateralReferences\obj\Debug\BilateralReferences.exe
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\BilateralReferences\obj\Debug\BilateralReferences.pdb
-C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\BilateralReferences\obj\Debug\BilateralReferences.MainForm.resources
+C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\BilateralReferences\obj\Debug\BilateralReferences.ClassMainForm.resources

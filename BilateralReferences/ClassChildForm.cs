@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BilateralReferences
 {
-    public partial class MainForm : Form
+    public partial class ClassChildForm : Form
     {
-        public MainForm()
+        public ClassChildForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace BilateralReferences
 {
-    partial class MainForm
+    partial class ClassChildForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MainForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MainForm";
-            this.Text = "Bilateral references example";
-            this.ResumeLayout(false);
-
+            this.Text = "ClassChildForm";
         }
 
         #endregion
     }
 }
-
