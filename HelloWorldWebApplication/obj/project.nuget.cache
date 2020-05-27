@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sFAWQ6hNNSCRmYf5ylEcRuEA9LBs1HiI9PJijH0hG93LCyKm/W0FZwJUSUJrm6Z0BQizYAO6K0yTED07OlupGg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gabor\\source\\repos\\GaborVarga2020\\MyBusinessProjects\\HelloWorldWebApplication\\HelloWorldWebApplication.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gabor\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
