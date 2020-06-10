@@ -1,12 +1,21 @@
-﻿<Window x:Class="DynamicLocalizationOfWPFUserInterface.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DynamicLocalizationOfWPFUserInterface"
+        x:Class="DynamicLocalizationOfWPFUserInterface.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="548" Width="992">
-    <Grid Background="#FF8EBBF4">
-
+        Title="{DynamicResource ResourceKey=Title}" Height="Auto" Width="541" WindowStyle="SingleBorderWindow" SizeToContent="Height" ResizeMode="NoResize">
+	<Window.Resources>
+		<ResourceDictionary Source="MainWindow.ResourceDictionary.en.xaml"></ResourceDictionary>
+	</Window.Resources>
+    <Grid Background="#FF8EBBF4" Height="Auto" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Choose the language of the application:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

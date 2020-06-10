@@ -6,4 +6,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Page Remove="MainWindow.ResourceDictionary.en.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="MainWindow.ResourceDictionary.en.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+
 </Project>

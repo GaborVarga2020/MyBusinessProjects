@@ -10,32 +10,74 @@ using System.Windows.Forms;
 
 namespace BilateralReferences
 {
-    public partial class ClassMainForm : Form
-    {
-        #region Fields
+	public partial class ClassMainForm : Form
+	{
+		#region Fields
 
-        private System.Collections.Generic.List<ClassChildForm> m_listChildForm;
+		private System.Collections.Generic.List<ClassChildForm> m_listChildForm;
 
-        #endregion
+		#endregion
 
-        #region Constructors
+		#region Constructors
 
-        public ClassMainForm()
-        {
-            InitializeComponent();
+		public ClassMainForm()
+		{
+			InitializeComponent();
 
-            m_listChildForm = new List<ClassChildForm>();
-        }
+			m_listChildForm = new List<ClassChildForm>();
+		}
 
-        #endregion
+		#endregion
 
-        #region Methods
+		#region Methods
 
-        private void EventHandler_ButtonCreateChildForm_Click(object sender, EventArgs e)
-        {
+		private void ChildFormAdd(ClassChildForm a_childForm)
+		{
+#if DEBUG
+			System.Diagnostics.Debug.Assert(a_childForm != null);
+			System.Diagnostics.Debug.Assert(m_listChildForm.Contains(a_childForm) == false);
+#endif
 
-        }
+			m_listChildForm.Add(a_childForm);
 
-        #endregion
-    }
+			a_childForm.Text = string.Format(
+				"Child form {0}",
+				m_listChildForm.Count
+			);
+
+			// Register event handlers.
+		}
+
+		private void ChildFormRemove(ClassChildForm a_childForm)
+		{
+		}
+
+		private void EventHandler_ButtonBackColorChangeWithChildMethodCall_Click(object sender, EventArgs e)
+		{
+			using (ColorDialog colorDialog = new ColorDialog())
+			{
+				if (colorDialog.ShowDialog() == DialogResult.OK)
+				{
+					for (int nChildFormIndex = 0; nChildFormIndex < m_listChildForm.Count; nChildFormIndex++)
+					{
+						ClassChildForm childFormIndexed = m_listChildForm[nChildFormIndex];
+						childFormIndexed.SetBackColor(colorDialog.Color);
+					}
+				}
+			}
+		}
+
+		private void EventHandler_ButtonBackColorChangeWithMainFormEvent_Click(object sender, EventArgs e)
+		{
+		}
+
+		private void EventHandler_ButtonCreateChildForm_Click(object sender, EventArgs e)
+		{
+			ClassChildForm childForm = new ClassChildForm();
+			ChildFormAdd(childForm);
+			childForm.Show();
+		}
+
+		#endregion
+	}
 }
