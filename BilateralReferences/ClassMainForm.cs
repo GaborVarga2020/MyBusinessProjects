@@ -46,10 +46,18 @@ namespace BilateralReferences
 			);
 
 			// Register event handlers.
+			a_childForm.EventDisposing += EventHandler_ChildForm_Disposing;
 		}
 
 		private void ChildFormRemove(ClassChildForm a_childForm)
 		{
+			System.Diagnostics.Debug.Assert(a_childForm != null);
+			System.Diagnostics.Debug.Assert(m_listChildForm.Contains(a_childForm));
+
+			m_listChildForm.Remove(a_childForm);
+
+			// Unregister event handlers.
+			a_childForm.EventDisposing -= EventHandler_ChildForm_Disposing;
 		}
 
 		private void EventHandler_ButtonBackColorChangeWithChildMethodCall_Click(object sender, EventArgs e)
@@ -76,6 +84,14 @@ namespace BilateralReferences
 			ClassChildForm childForm = new ClassChildForm();
 			ChildFormAdd(childForm);
 			childForm.Show();
+		}
+
+		private void EventHandler_ChildForm_Disposing(ClassChildForm a_sender)
+		{
+			System.Diagnostics.Debug.Assert(a_sender != null);
+			System.Diagnostics.Debug.Assert(m_listChildForm.Contains(a_sender));
+
+			ChildFormRemove(a_sender);
 		}
 
 		#endregion

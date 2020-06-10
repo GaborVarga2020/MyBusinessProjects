@@ -40,12 +40,20 @@ namespace BilateralReferences
 				return;
 			}
 
+			if (EventDisposing != null)
+			{
+				EventDisposing(this);
+			}
+
 			if (a_bDisposing)
 			{
 				if (components != null)
 				{
 					components.Dispose();
 				}
+
+				// Check each own-implemented event handlers if all objects have unregistered their event handlers.
+				System.Diagnostics.Debug.Assert(EventDisposing == null);
 			}
 
 			m_bDisposed = true;
@@ -59,6 +67,13 @@ namespace BilateralReferences
 
 			this.BackColor = a_backColor;
 		}
+
+		#endregion
+
+		#region Events
+
+		public delegate void DelegateDisposing(ClassChildForm a_sender);
+		public event DelegateDisposing EventDisposing;
 
 		#endregion
 	}
