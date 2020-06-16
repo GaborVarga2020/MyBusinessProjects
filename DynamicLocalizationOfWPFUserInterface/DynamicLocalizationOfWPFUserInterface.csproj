@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <Page Remove="MainWindow.ResourceDictionary.en.xaml" />
+    <Page Remove="MainWindow.ResourceDictionary.hu.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="MainWindow.ResourceDictionary.en.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Resource>
+    <Resource Include="MainWindow.ResourceDictionary.hu.xaml" />
   </ItemGroup>
 
 </Project>

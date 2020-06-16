@@ -4,5 +4,5 @@
 	xmlns:local="clr-namespace:DynamicLocalizationOfWPFUserInterface"
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 >
-	<system:String x:Key="Title">Dynamic Localization of WPF User Interface</system:String>
+	<system:String x:Key="Title">WPF Felhasználói Felület Dinamikus Lokalizációja</system:String>
 </ResourceDictionary>

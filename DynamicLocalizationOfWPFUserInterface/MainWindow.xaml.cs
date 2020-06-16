@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,14 +16,20 @@ using System.Windows.Shapes;
 
 namespace DynamicLocalizationOfWPFUserInterface
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		#region Constructors
+
+		public MainWindow()
+		{
+			InitializeComponent();
+
+			this.Resources.Source = new Uri("MainWindow.ResourceDictionary.hu.xaml", UriKind.Relative);
+		}
+
+		#endregion
+	}
 }
