@@ -14,6 +14,7 @@ namespace BilateralReferences
 	{
 		#region Fields
 
+		private bool m_bDisposed;
 		private System.Collections.Generic.List<ClassChildForm> m_listChildForm;
 
 		#endregion
@@ -60,6 +61,38 @@ namespace BilateralReferences
 			a_childForm.EventDisposing -= EventHandler_ChildForm_Disposing;
 		}
 
+		protected override void Dispose(bool a_bDisposing)
+		{
+			if (m_bDisposed)
+			{
+				return;
+			}
+
+			if (a_bDisposing)
+			{
+				if (components != null)
+				{
+					components.Dispose();
+				}
+
+				while (m_listChildForm.Count > 0)
+				{
+					ClassChildForm childForm = m_listChildForm[m_listChildForm.Count - 1];
+					ChildFormRemove(childForm);
+					childForm.Dispose();
+				}
+
+				m_listChildForm = null;
+
+				// Check each own-implemented event handlers if all objects have unregistered their event handlers.
+				System.Diagnostics.Debug.Assert(EventBackColorChanged == null);
+			}
+
+			m_bDisposed = true;
+
+			base.Dispose(a_bDisposing);
+		}
+
 		private void EventHandler_ButtonBackColorChangeWithChildMethodCall_Click(object sender, EventArgs e)
 		{
 			using (ColorDialog colorDialog = new ColorDialog())
@@ -77,11 +110,21 @@ namespace BilateralReferences
 
 		private void EventHandler_ButtonBackColorChangeWithMainFormEvent_Click(object sender, EventArgs e)
 		{
+			if (EventBackColorChanged != null)
+			{
+				using (ColorDialog colorDialog = new ColorDialog())
+				{
+					if (colorDialog.ShowDialog() == DialogResult.OK)
+					{
+						EventBackColorChanged(colorDialog.Color);
+					}
+				}
+			}
 		}
 
 		private void EventHandler_ButtonCreateChildForm_Click(object sender, EventArgs e)
 		{
-			ClassChildForm childForm = new ClassChildForm();
+			ClassChildForm childForm = new ClassChildForm(this);
 			ChildFormAdd(childForm);
 			childForm.Show();
 		}
@@ -95,5 +138,12 @@ namespace BilateralReferences
 		}
 
 		#endregion
-	}
+
+		#region Events
+
+		public delegate void DelegateBackColorChanged(System.Drawing.Color a_backColor);
+		public event DelegateBackColorChanged EventBackColorChanged;
+
+		#endregion
+		}
 }

@@ -16,14 +16,48 @@ namespace BilateralReferences
 
 		private bool m_bDisposed;
 
+		// This field can be referenced only in its property!
+		private ClassMainForm m_owner;
+
+		#endregion
+
+		#region Properties
+
+		private ClassMainForm Owner
+		{
+			get
+			{
+				return m_owner;
+			}
+
+			set
+			{
+				if (m_owner != null)
+				{
+					// Unregister event handlers.
+					m_owner.EventBackColorChanged -= EventHandler_Owner_BackColorChanged;
+				}
+
+				m_owner = value;
+
+				if (m_owner != null)
+				{
+					// Register event handlers.
+					m_owner.EventBackColorChanged += EventHandler_Owner_BackColorChanged;
+				}
+			}
+		}
+
 		#endregion
 
 		#region Constructors
 
-		public ClassChildForm()
-        {
-            InitializeComponent();
-        }
+		public ClassChildForm(ClassMainForm a_owner)
+		{
+			InitializeComponent();
+
+			Owner = a_owner;
+		}
 
 		#endregion
 
@@ -52,6 +86,8 @@ namespace BilateralReferences
 					components.Dispose();
 				}
 
+				Owner = null;
+
 				// Check each own-implemented event handlers if all objects have unregistered their event handlers.
 				System.Diagnostics.Debug.Assert(EventDisposing == null);
 			}
@@ -59,6 +95,12 @@ namespace BilateralReferences
 			m_bDisposed = true;
 
 			base.Dispose(a_bDisposing);
+		}
+
+		private void EventHandler_Owner_BackColorChanged(System.Drawing.Color a_backColor)
+		{
+			System.Diagnostics.Debug.Assert(m_bDisposed == false);
+			this.BackColor = a_backColor;
 		}
 
 		public void SetBackColor(System.Drawing.Color a_backColor)
