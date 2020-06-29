@@ -4,6 +4,7 @@ C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizatio
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\bin\Debug\netcoreapp3.1\DynamicLocalizationOfWPFUserInterface.runtimeconfig.dev.json
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\bin\Debug\netcoreapp3.1\DynamicLocalizationOfWPFUserInterface.dll
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\bin\Debug\netcoreapp3.1\DynamicLocalizationOfWPFUserInterface.pdb
+C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\obj\Debug\netcoreapp3.1\DynamicLocalizationOfWPFUserInterface.csprojAssemblyReference.cache
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\gabor\source\repos\GaborVarga2020\MyBusinessProjects\DynamicLocalizationOfWPFUserInterface\obj\Debug\netcoreapp3.1\DynamicLocalizationOfWPFUserInterface_MarkupCompile.cache

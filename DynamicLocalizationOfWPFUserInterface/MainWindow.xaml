@@ -6,12 +6,18 @@
         xmlns:local="clr-namespace:DynamicLocalizationOfWPFUserInterface"
         x:Class="DynamicLocalizationOfWPFUserInterface.MainWindow"
         mc:Ignorable="d"
-        Title="{DynamicResource ResourceKey=Title}" Height="Auto" Width="541" WindowStyle="SingleBorderWindow" SizeToContent="Height" ResizeMode="NoResize">
+        Title="{DynamicResource ResourceKey=Title}"
+		Height="Auto"
+		Width="541"
+		WindowStyle="SingleBorderWindow"
+		SizeToContent="Height"
+		ResizeMode="NoResize"
+>
 	<Window.Resources>
 		<ResourceDictionary Source="MainWindow.ResourceDictionary.en.xaml"></ResourceDictionary>
 	</Window.Resources>
     <Grid Background="#FF8EBBF4" Height="Auto" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Top">
-        <Grid.ColumnDefinitions>
+		<Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>

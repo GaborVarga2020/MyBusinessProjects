@@ -21,6 +21,31 @@ namespace DynamicLocalizationOfWPFUserInterface
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		#region Enumerated values
+
+		public enum eLanguage
+		{
+			English,
+			Hungarian
+		}
+
+		#endregion
+
+		#region Properties
+
+		public eLanguage RuntimeLanguage
+		{
+			get
+			{
+			}
+
+			set
+			{
+			}
+		}
+
+		#endregion
+
 		#region Constructors
 
 		public MainWindow()
@@ -29,6 +54,10 @@ namespace DynamicLocalizationOfWPFUserInterface
 
 			this.Resources.Source = new Uri("MainWindow.ResourceDictionary.hu.xaml", UriKind.Relative);
 		}
+
+		#endregion
+
+		#region Methods
 
 		#endregion
 	}
