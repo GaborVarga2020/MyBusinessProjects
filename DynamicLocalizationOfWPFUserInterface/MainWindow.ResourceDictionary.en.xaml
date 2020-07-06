@@ -5,4 +5,7 @@
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 >
 	<system:String x:Key="Title">Dynamic Localization of WPF User Interface</system:String>
+	<system:String x:Key="LabelLanguageSelection.Content">Choose the language of the application:</system:String>
+	<system:String x:Key="ComboboxLanguageSelection.Item.English">English</system:String>
+	<system:String x:Key="ComboboxLanguageSelection.Item.Hungarian">Hungarian</system:String>
 </ResourceDictionary>

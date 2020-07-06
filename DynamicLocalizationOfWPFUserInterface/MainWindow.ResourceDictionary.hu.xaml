@@ -5,4 +5,7 @@
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 >
 	<system:String x:Key="Title">WPF Felhasználói Felület Dinamikus Lokalizációja</system:String>
+	<system:String x:Key="LabelLanguageSelection.Content">Válassza ki az alkalmazás nyelvét:</system:String>
+	<system:String x:Key="ComboboxLanguageSelection.Item.English">Angol</system:String>
+	<system:String x:Key="ComboboxLanguageSelection.Item.Hungarian">Magyar</system:String>
 </ResourceDictionary>
