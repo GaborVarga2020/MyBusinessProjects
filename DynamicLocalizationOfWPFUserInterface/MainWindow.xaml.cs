@@ -58,6 +58,7 @@ namespace DynamicLocalizationOfWPFUserInterface
 
 		public enum eLanguage
 		{
+			Undefined,
 			English,
 			Hungarian,
 
@@ -71,6 +72,7 @@ namespace DynamicLocalizationOfWPFUserInterface
 		#region Fields
 
 		private System.Collections.Generic.Dictionary<eLanguage, string> m_dictionaryLanguageResources;
+		private eLanguage m_eLanguage;
 
 		#endregion
 
@@ -80,11 +82,23 @@ namespace DynamicLocalizationOfWPFUserInterface
 		{
 			get
 			{
-				return eLanguage.English;
+				return m_eLanguage;
 			}
 
 			set
 			{
+				if (m_eLanguage == value)
+				{
+					// No change in the value, there is nothing to do.
+					return;
+				}
+
+				m_eLanguage = value;
+
+				System.Diagnostics.Debug.Assert(m_dictionaryLanguageResources.ContainsKey(m_eLanguage));
+				string strResourceDictionaryXamlFileName = m_dictionaryLanguageResources[m_eLanguage];
+				this.Resources.Source = new Uri(strResourceDictionaryXamlFileName, UriKind.Relative);
+				FillLanguageDataCombobox();
 			}
 		}
 
@@ -100,9 +114,7 @@ namespace DynamicLocalizationOfWPFUserInterface
 			m_dictionaryLanguageResources.Add(eLanguage.English, "MainWindow.ResourceDictionary.en.xaml");
 			m_dictionaryLanguageResources.Add(eLanguage.Hungarian, "MainWindow.ResourceDictionary.hu.xaml");
 
-			FillLanguageDataCombobox();
-
-			//this.Resources.Source = new Uri("MainWindow.ResourceDictionary.hu.xaml", UriKind.Relative);
+			RuntimeLanguage = eLanguage.English;
 		}
 
 		#endregion
@@ -113,19 +125,35 @@ namespace DynamicLocalizationOfWPFUserInterface
 		{
 			ComboboxLanguageSelection.Items.Clear();
 
+			#region Language English
+
 			string strResourceKey = "ComboboxLanguageSelection.Item.English";
 			System.Diagnostics.Debug.Assert(this.Resources.Contains(strResourceKey));
 			System.Diagnostics.Debug.Assert(this.Resources[strResourceKey].GetType() == typeof(string));
 			StructLanguageData languageData = new StructLanguageData(eLanguage.English, (string)this.Resources[strResourceKey]);
 			ComboboxLanguageSelection.Items.Add(languageData);
 
-			--> ToDo: set the item as active if the language is the current one!
+			if (RuntimeLanguage == eLanguage.English)
+			{
+				ComboboxLanguageSelection.SelectedItem = languageData;
+			}
+
+			#endregion
+
+			#region Language Hungarian
 
 			strResourceKey = "ComboboxLanguageSelection.Item.Hungarian";
 			System.Diagnostics.Debug.Assert(this.Resources.Contains(strResourceKey));
 			System.Diagnostics.Debug.Assert(this.Resources[strResourceKey].GetType() == typeof(string));
 			languageData = new StructLanguageData(eLanguage.Hungarian, (string)this.Resources[strResourceKey]);
 			ComboboxLanguageSelection.Items.Add(languageData);
+
+			if (RuntimeLanguage == eLanguage.Hungarian)
+			{
+				ComboboxLanguageSelection.SelectedItem = languageData;
+			}
+
+			#endregion
 		}
 
 		#endregion
