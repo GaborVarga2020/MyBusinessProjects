@@ -114,12 +114,28 @@ namespace DynamicLocalizationOfWPFUserInterface
 			m_dictionaryLanguageResources.Add(eLanguage.English, "MainWindow.ResourceDictionary.en.xaml");
 			m_dictionaryLanguageResources.Add(eLanguage.Hungarian, "MainWindow.ResourceDictionary.hu.xaml");
 
-			RuntimeLanguage = eLanguage.English;
+			RuntimeLanguage = eLanguage.Hungarian;
 		}
 
 		#endregion
 
 		#region Methods
+
+		private void EventHandler_ComboboxLanguageSelection_SelectionChanged(object a_sender, SelectionChangedEventArgs a_selectionChangedEventArgs)
+		{
+			System.Diagnostics.Debug.Assert(a_selectionChangedEventArgs != null);
+
+			if (a_selectionChangedEventArgs.AddedItems.Count == 0)
+			{
+				return;
+			}
+
+			System.Diagnostics.Debug.Assert(a_selectionChangedEventArgs.AddedItems[0] is StructLanguageData);
+
+			StructLanguageData languageData = (StructLanguageData)a_selectionChangedEventArgs.AddedItems[0];
+
+			RuntimeLanguage = languageData.m_eLanguageCode;
+		}
 
 		private void FillLanguageDataCombobox()
 		{

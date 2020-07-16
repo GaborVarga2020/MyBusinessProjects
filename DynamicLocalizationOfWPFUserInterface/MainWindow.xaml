@@ -22,6 +22,13 @@
             <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
 		<Label x:Name="LabelLanguageSelection" Content="{DynamicResource ResourceKey=LabelLanguageSelection.Content}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto"/>
-        <ComboBox x:Name="ComboboxLanguageSelection" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top"/>
+		<ComboBox
+			x:Name="ComboboxLanguageSelection"
+			Grid.Column="1"
+			HorizontalAlignment="Stretch"
+			Margin="0,0,0,0"
+			VerticalAlignment="Top"
+			SelectionChanged="EventHandler_ComboboxLanguageSelection_SelectionChanged"
+		/>
     </Grid>
 </Window>
