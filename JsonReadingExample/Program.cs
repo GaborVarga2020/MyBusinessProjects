@@ -213,6 +213,7 @@ namespace JsonReadingExample
 			}
 #endif
 
+#if false
 			using (System.IO.FileStream jsonFileStream = new System.IO.FileStream("JsonFiles\\Array - string.json", System.IO.FileMode.Open))
 			{
 				try
@@ -230,6 +231,37 @@ namespace JsonReadingExample
 							System.Diagnostics.Debug.Assert(jsonElementOfArray.ValueKind == System.Text.Json.JsonValueKind.String);
 							string strColor = jsonElementOfArray.GetString();
 						}
+					}
+				}
+				catch (System.Exception exception)
+				{
+					System.Console.WriteLine(exception.Message);
+				}
+			}
+#endif
+
+			using (System.IO.FileStream jsonFileStream = new System.IO.FileStream("JsonFiles\\Object.json", System.IO.FileMode.Open))
+			{
+				try
+				{
+					using (System.Text.Json.JsonDocument jsonDocument = System.Text.Json.JsonDocument.Parse(jsonFileStream))
+					{
+						System.Text.Json.JsonElement rootElement = jsonDocument.RootElement;
+						System.Diagnostics.Debug.Assert(rootElement.ValueKind == System.Text.Json.JsonValueKind.Object);
+						System.Text.Json.JsonElement jsonElementAuthor = rootElement.GetProperty("Author");
+						System.Diagnostics.Debug.Assert(jsonElementAuthor.ValueKind == System.Text.Json.JsonValueKind.String);
+						string strAuthor = jsonElementAuthor.GetString();
+
+						System.Text.Json.JsonElement jsonElementTitle = rootElement.GetProperty("Title");
+						System.Diagnostics.Debug.Assert(jsonElementTitle.ValueKind == System.Text.Json.JsonValueKind.String);
+						string strTitle = jsonElementTitle.GetString();
+
+						System.Text.Json.JsonElement jsonElementPrice = rootElement.GetProperty("Price");
+						System.Diagnostics.Debug.Assert(jsonElementPrice.ValueKind == System.Text.Json.JsonValueKind.Number);
+						float nPrice = jsonElementPrice.GetSingle();
+
+						System.Text.Json.JsonElement jsonElementTableOfContents = rootElement.GetProperty("TableOfContents");
+						System.Diagnostics.Debug.Assert(jsonElementTableOfContents.ValueKind == System.Text.Json.JsonValueKind.Object);
 					}
 				}
 				catch (System.Exception exception)

@@ -12,6 +12,9 @@
     <None Update="JsonFiles\Empty.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="JsonFiles\Object.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="JsonFiles\Single value - boolean - false.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
