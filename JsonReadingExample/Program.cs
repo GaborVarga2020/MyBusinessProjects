@@ -262,6 +262,18 @@ namespace JsonReadingExample
 
 						System.Text.Json.JsonElement jsonElementTableOfContents = rootElement.GetProperty("TableOfContents");
 						System.Diagnostics.Debug.Assert(jsonElementTableOfContents.ValueKind == System.Text.Json.JsonValueKind.Object);
+
+						System.Text.Json.JsonElement jsonElementTableOfContentsItems = jsonElementTableOfContents.GetProperty("Items");
+						System.Diagnostics.Debug.Assert(jsonElementTableOfContentsItems.ValueKind == System.Text.Json.JsonValueKind.Array);
+
+						int nArrayLength = jsonElementTableOfContentsItems.GetArrayLength();
+
+						for (int nArrayElementIndex = 0; nArrayElementIndex < nArrayLength; nArrayElementIndex++)
+						{
+							System.Text.Json.JsonElement jsonElementOfArray = jsonElementTableOfContentsItems[nArrayElementIndex];
+							System.Diagnostics.Debug.Assert(jsonElementOfArray.ValueKind == System.Text.Json.JsonValueKind.String);
+							string strChapter = jsonElementOfArray.GetString();
+						}
 					}
 				}
 				catch (System.Exception exception)
